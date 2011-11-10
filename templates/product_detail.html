@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load avrora_tags %}
+{% load thumbnail %}
+{% block header %} Catalog
+{% endblock %}
+{% block breadcrumb %}
+	{% breadcrumbs product %}
+{% endblock %}
+{% block content %}
+	<div class="product">
+		<h1>
+			<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+		</h1>
+			{% thumbnail image "100x100" crop="center" as im %}
+    			<img style="margin:{{ im|margin:"105x105" }}" src="{{ im.url }}" width="{{ im.x }}" height="{{ im.y }}">
+			{% endthumbnail %}
+		<div>
+			{{product.description}}
+		</div>
+		<span>Цена:{{product.price}} грн. {{act_price}} грн. {% if discount %} Скидка:{{discount}}%{%endif%}</span>
+		<span class="button_buy"><a href="buy">Купить</a></span>
+	</div>
+{% endblock %}
