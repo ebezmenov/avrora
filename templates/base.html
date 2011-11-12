@@ -1,0 +1,67 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>{% block title %}Title base{% endblock %}</title>
+		<meta name="description" content="" />
+		<meta name="author" content="nazar" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}css/base.css" />
+		{% block head_css %}
+		{% endblock %}
+	</head>
+	<body>
+		<div>
+			<header>
+				<h1>{% block header %}Header base
+					{% endblock %}</h1>
+			</header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/contact">Contact</a>
+				<a href="/admin">Admin</a>
+				<a href="/upload_csv">Import product</a>
+			</nav>
+			<div id='search'>
+				[SEARCH HERE]
+			</div>
+			<div id='cart'>
+				[CART HERE]
+			</div>
+			<div id='bread'>{% block breadcrumb %}
+				{% endblock %}
+			</div>
+			<div id="content">
+				<div id="main">
+					{% block content %}
+						Main content
+					{% endblock %}
+				</div>
+				<div id="root_menu">{% block root_menu %}
+					 <ul> 
+					 	{% for r_category in root_cat %}
+						 <li {% ifequal r_category active.get_root_parent %} class="active_cat"{% endifequal %} >
+					 		<a href="{{ r_category.get_absolute_url }}">{{ r_category.name }}</a></li>
+						{% endfor %}
+					</ul>
+					
+					 {% endblock %}
+				</div>
+			</div>
+			<footer>
+				<p>
+					&copy; Copyright  by nazar 
+					Hello {{ user.username }}
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
