@@ -1,4 +1,5 @@
 {% load static %}
+{% load avrora_tags %}
 {% get_static_prefix as STATIC_PREFIX %}
 <!DOCTYPE html>
 <html lang="en">
@@ -46,13 +47,7 @@
 					{% endblock %}
 				</div>
 				<div id="root_menu">{% block root_menu %}
-					 <ul> 
-					 	{% for r_category in root_cat %}
-						 <li {% ifequal r_category active.get_root_parent %} class="active_cat"{% endifequal %} >
-					 		<a href="{{ r_category.get_absolute_url }}">{{ r_category.name }}</a></li>
-						{% endfor %}
-					</ul>
-					
+					 {% nav_lists %}
 					 {% endblock %}
 				</div>
 			</div>

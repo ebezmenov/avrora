@@ -1,6 +1,7 @@
 from django.template import RequestContext
 from avrora.catalog.models import Category
 from avrora.catalog.models import Product
+from avrora.catalog.utils import list_nav_cat
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 
@@ -16,7 +17,7 @@ def get_category_nodes(request):
 def category_view(request, slug):
     active_cat = Category.objects.get(slug = slug)
     root_categories = Category.objects.filter(parent = None)
-    return render_to_response('catalog_view.html',{ 'root_cat': root_categories, 'active':active_cat})
+    return render_to_response('catalog_view.html',{ 'root_cat': root_categories, 'active':active_cat, 'nav_list':list_nav_cat()})
 
 @login_required
 def product_detail(request, slug):
