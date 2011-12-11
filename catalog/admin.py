@@ -9,7 +9,7 @@ def make_active_product(modeladmin, request, queryset):
 make_active_product.short_description =u'Установить Active'
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'active', 'price')
+    list_display = ('name', 'active','sku' ,'price')
     search_fields = ['name']
     prepopulated_fields = {'slug' : ('name',)}
     actions = [make_active_product]
@@ -20,6 +20,7 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'level')
     prepopulated_fields = {'slug' : ('name',)}
     
 admin.site.register(Manufacturer)

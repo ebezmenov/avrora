@@ -261,7 +261,7 @@ class Product(models.Model):
     """
     name = models.CharField(u"Name", max_length=80, blank=True)
     slug = models.SlugField(u"Slug", unique=True, max_length=80)
-    sku = models.CharField(u"SKU", blank=True, max_length=30)
+    sku = models.CharField(u"SKU", unique=True, max_length=30)
     price = models.FloatField(u"Price", default=0.0)
     unit = models.CharField(blank=True, max_length=20)
     short_description = models.TextField(u"Short description", blank=True)

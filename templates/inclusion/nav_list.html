@@ -1,8 +1,10 @@
 {% for item,sub_list in lists%}
+{% if sub_list %}
 <ul class="list_category">
 	{{item.name}}
 	{% for sub_item in sub_list%}
 		<li><a href="{{sub_item.url}}">{{sub_item.name}}</a></li>
 	{% endfor %}
 </ul>
+{% endif %}
 {% endfor%}
